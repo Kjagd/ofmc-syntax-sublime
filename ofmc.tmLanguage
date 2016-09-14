@@ -141,12 +141,8 @@
 				<dict>
 					<key>include</key>
 					<string>$self</string>
-				</dict>
-				<dict>
 					<key>match</key>
 					<string>.</string>
-					<key>name</key>
-					<string>support.other</string>
 				</dict>
 			</array>
 		</dict>

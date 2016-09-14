@@ -44,6 +44,5 @@ patterns:
   end: \)
   patterns:
   - include: $self
-  - name: support.other
     match: .
 ...
