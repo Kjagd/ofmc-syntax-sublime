@@ -1,0 +1,49 @@
+# [PackageDev] target_format: plist, ext: tmLanguage
+---
+name: OFMC Syntax
+scopeName: source.syntax_name
+fileTypes: [AnB]
+uuid: d3117016-3c0e-4da7-b8de-0a3b39fb311b
+
+patterns:
+- comment: outer operators
+  match: (\{|\{\|)(\s*[\w(),]*\s*)(\}|\|\})
+  captures:
+    '1': {name: keyword.other}
+    '3': {name: keyword.other}
+- comment: operators
+  match: \[*(\w*\s*)\]*\s*(\**->\**)\s*\[*(\w*)\]*
+  captures:
+    '1': {name: variable.language}
+    '2': {name: keyword.operator}
+    '3': {name: variable.language}
+- comment: variable names
+  match: \b((Agent|Number)\s*)(\w*\d*\s*(,\w*\d*\s*)*)
+  captures:
+    '2': {name: keyword.other }
+    '3': {name: variable.parameter}
+- comment: function dec
+  match: \b((Function|Symmetric_key)\s*)(\w*\d*\s*(,\w*\d*\s*)*)
+  captures:
+    '2': {name: keyword.other }
+    '3': {name: entity.name.function}
+- comment: keywords
+  name: keyword.other
+  match: \b(Protocol|Types|Agent|Number|Function|Symmetric_key|PublicKey|Knowledge|where|Actions|Goals|authenticates|on|secrecy|of|secret|between|!=|\{\|)\b
+- comment: comments
+  name: comment.line
+  match: \#.*$
+- comment: misc decs
+  match: (\w*)(:)
+  captures:
+    '1': {name: variable.language}
+- comment: functions calls
+  begin: \b([a-zA-Z]+)(\()
+  beginCaptures:
+    '1': {name: support.function}
+  end: \)
+  patterns:
+  - include: $self
+  - name: support.other
+    match: .
+...
